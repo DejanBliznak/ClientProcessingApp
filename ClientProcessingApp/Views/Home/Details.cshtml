@@ -1,0 +1,50 @@
+﻿@model Domain.Models.ClientModel
+
+<h2>Client Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    @if (Model != null)
+    {
+        <label>Name :</label>
+        <label>@Model.Name</label>
+        <br />
+        <label>Birth Date :</label>
+        <label>@Model.BirthDate.ToShortDateString()</label>
+        <br />
+        @foreach (var address in Model.Addresses)
+        {
+            @if (address.Type == 1)
+            {
+                <label >Home Addres:</label>
+                <label>@address.AddressLine</label>
+                <br />
+            }            
+            @if (address.Type == 2)
+            {
+                <label >Weekend Addres:</label>
+                <label>@address.AddressLine</label>
+                <br />
+            }          
+        }
+    }
+    else{
+    <label>Client Not found </label>
+    }
+
+   
+      
+
+  @*      <dt class="col-sm-2">
+            Addresses
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var address in Model.Addresses)
+            {
+                <p>@address.Type - @address.AddressLine</p>
+            }
+        </dd>*@
+   
+</div>
+<a href="@Url.Action("Index", "Home")">Back to List</a>
